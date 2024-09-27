@@ -7,7 +7,7 @@
 - Machine learning-based URL classification.
 - Dataset preprocessing and model training capabilities.
 - Flask-based server for backend processing.
-- Client interface to interact with the model.
+- React-based client interface to interact with the model.
 
 ## Installation
 
