@@ -9,3 +9,5 @@ urllib3
 scikit-learn
 Counter
 flask
+matplotlib
+seaborn

@@ -49,8 +49,12 @@ function App() {
     axios
       .get("/cat")
       .then((response) => {
-        setMainCategory(response.data[0]);
-        setSubCategory(response.data[1]);
+        if (response.data && response.data.length === 2) {
+          setMainCategory(response.data[0]);
+          setSubCategory(response.data[1]);
+        } else {
+          setError(true);
+        }
       })
       .catch((err) => {
         setError(true);
@@ -65,12 +69,21 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+  
     const body = {
       input: input,
     };
-    axios.post("/cat", body);
-    await sleep(2000);
-    getCat();
+  
+    try {
+      await axios.post("/cat", body);
+      await sleep(2000);
+      getCat();
+    } catch (err) {
+      setError(true);
+      setIsSubmitting(false);
+      await sleep(2000);
+      setError(false);
+    }
   };
 
   const submitButtonText = `${!isSubmitting ? "Find Category" : "Loading"}`;
