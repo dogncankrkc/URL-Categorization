@@ -10,9 +10,8 @@ import {
   Select,
   Typography,
   Alert,
-  Card,
 } from "@mui/material";
-import './style/bg.css';
+import "./style/index.css";
 
 function App() {
   const [input, setInput] = useState();
@@ -82,109 +81,118 @@ function App() {
 
   return (
     <Box className="App">
-      <Box className="bg">
       <CustomAppBar />
-      <Box height="16rem" />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          lineHeight: "5rem",
-        }}
-      >
-        <form>
-          <TextField
-            disabled
-            placeholder="http://"
-            sx={{ maxWidth: "6rem" }}
-          ></TextField>
-          <TextField
-            placeholder="Type Your URL"
-            onChange={handleChangeDomain}
-            name="url"
-            sx={{ minWidth: "35rem"}}
-          />
-        </form>
-        <Box sx={{ minWidth: 120 }}>
-          <FormControl fullWidth>
-            <Select
-              id="demo-simple-select"
-              value={type}
-              onChange={handleChangeType}
-              defaultChecked=".com"
+      <Box className="content">
+        <Box className="form">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              lineHeight: "5rem",
+            }}
+          >
+            <form>
+              <TextField
+                disabled
+                placeholder="http://"
+                sx={{ maxWidth: "6rem" }}
+              ></TextField>
+              <TextField
+                placeholder="Type Your URL"
+                onChange={handleChangeDomain}
+                name="url"
+                sx={{ minWidth: "35rem" }}
+              />
+            </form>
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <Select
+                  id="demo-simple-select"
+                  value={type}
+                  onChange={handleChangeType}
+                  defaultChecked=".com"
+                >
+                  <MenuItem value={".com"}>.com</MenuItem>
+                  <MenuItem value={".com.tr"}>.com.tr</MenuItem>
+                  <MenuItem value={".org"}>.org</MenuItem>
+                  <MenuItem value={".net"}>.net</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </div>
+          <Box>
+            <Button
+              variant="contained"
+              color={confirmButtonColor}
+              onClick={handleChangeInput}
+              sx={{ marginRight: "1rem" }}
             >
-              <MenuItem value={".com"}>.com</MenuItem>
-              <MenuItem value={".com.tr"}>.com.tr</MenuItem>
-              <MenuItem value={".org"}>.org</MenuItem>
-              <MenuItem value={".net"}>.net</MenuItem>
-            </Select>
-          </FormControl>
+              {confirmButtonText}
+            </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              color="info"
+              onClick={handleSubmit}
+              disabled={disabledSubmitButton}
+            >
+              {submitButtonText}
+            </Button>
+          </Box>
         </Box>
-      </div>
-      <Box>
-        <Button
-          variant="contained"
-          color={confirmButtonColor}
-          onClick={handleChangeInput}
-          sx={{ marginRight: "1rem" }}
-        >
-          {confirmButtonText}
-        </Button>
-        <Button
-          type="submit"
-          variant="contained"
-          color="info"
-          onClick={handleSubmit}
-          disabled={disabledSubmitButton}
-        >
-          {submitButtonText}
-        </Button>
+
+        <Box className="result">
+          {mainCategory && (
+            <Box
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+                bgcolor: "transparent",
+              }}
+            >
+              <Typography color="secondary" fontWeight="650" variant="h6">
+                <span style={{ color: "rgba(1,1,1,.7)" }}>
+                  Main Category &rarr;
+                </span>{" "}
+                {mainCategory}
+              </Typography>
+            </Box>
+          )}
+
+          {subCategory && (
+            <Box
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+                bgcolor: "transparent",
+              }}
+            >
+              <Typography color="secondary" fontWeight="650" variant="h6">
+                <span style={{ color: "rgba(1,1,1,.7)" }}>
+                  Sub Category &rarr;
+                </span>{" "}
+                {subCategory}
+              </Typography>
+            </Box>
+          )}
+        </Box>
+        {error && (
+          <Box
+            sx={{
+              position: "fixed",
+              left: 0,
+              bottom: 0,
+              width: "100%",
+              borderRadius: "0",
+            }}
+          >
+            <Alert variant="filled" severity="error">
+              An Error Occurred!
+            </Alert>
+          </Box>
+        )}
       </Box>
-
-      {mainCategory && (
-        <Box
-          boxShadow="4"
-          sx={{
-            maxWidth: "35rem",
-            justifyContent: "center",
-            alignItems: "center",
-            marginLeft: "42rem",
-            bgcolor:'transparent'
-          }}
-        >
-          <Typography color="secondary" fontWeight="650" mt={15} variant="h6">
-            <span style={{ color: "rgba(1,1,1,.7)" }}>Main Category is</span>{" "}
-            {mainCategory}
-          </Typography>
-        </Box>
-      )}
-
-      {subCategory && (
-        <Box
-          boxShadow="2"
-          sx={{
-            maxWidth: "30rem",
-            justifyContent: "center",
-            alignItems: "center",
-            marginLeft: "45rem",
-            bgcolor:'transparent'
-          }}
-        >
-          <Typography color="secondary" fontWeight="650" mt={2} variant="h6">
-            <span style={{ color: "rgba(1,1,1,.7)" }}>Sub Category is</span> {subCategory}
-          </Typography>
-        </Box>
-      )}
-
-      {error && (
-        <Box sx={{ position: "fixed", left: 0, bottom: 0, width: "100%" }}>
-          <Alert variant="filled" severity="error">
-            An Error Occurred!
-          </Alert>
-        </Box>
-      )}
-    </Box>
     </Box>
   );
 }

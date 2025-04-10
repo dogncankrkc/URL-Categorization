@@ -3,7 +3,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 import sys
-sys.path.insert(0, 'C:/Users/PC/Desktop/URLCategorization')
+sys.path.insert(0, 'C:/Users/user/OneDrive/Masaüstü/URL-Categorization')
 from main import x
 
 @app.route('/cat' ,methods=['POST','GET'])
@@ -14,9 +14,13 @@ def cat():
         url=request_data['input']
         return 'a'
     elif request.method == 'GET':
-        sonuc=x(url)
-        a=sonuc[0]
-        b=sonuc[1]
+        result=x(url)
+
+        if result == None:
+            return ''   
+        
+        a=result[0]
+        b=result[1]
         return [a,b]
        
 

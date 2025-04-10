@@ -1,3 +1,4 @@
+import nltk
 from nltk.corpus import stopwords
 
 requestHeaders = {
@@ -9,7 +10,7 @@ requestHeaders = {
     'Connection': 'keep-alive'}
 
 datasetPath = f'Datasets/urlCategorization.csv'
-wfPath = f"C:/Users/PC/Desktop/URLCategorization/models/wordFrequency.picle"
+wfPath = f"C:/Users/user/OneDrive/Masaüstü/URL-Categorization/models/wordFrequency.picle"
 
 domainWhiteList = {'com', 'net', 'to', 'info', 'org', 'cn', 'jp', 'tw', 'ir', 'uk', 'ae', 'tv', 'in', 'hk',
                               'th', 'ca', 'us', 'gr', 'ws', 'io', 'bg', 'au', 'gov', 'il', 'za', 'edu', 'me', 'ph',
@@ -19,7 +20,7 @@ domainWhiteList = {'com', 'net', 'to', 'info', 'org', 'cn', 'jp', 'tw', 'ir', 'u
                               }
 
 stopWords = set(stopwords.words('english'))
-with open("C:/Users/PC/Desktop/URLCategorization/Datasets/stopwords.txt") as f:
+with open("C:/Users/user/OneDrive/Masaüstü/URL-Categorization/Datasets/stopwords.txt") as f:
     for word in f:
         stopWords.add(word.replace('\n', ''))
 
